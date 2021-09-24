@@ -1,0 +1,25 @@
+ //Right Rotate an array by k
+ 
+ void rotate(vector<int>& nums, int k) {
+      
+        int n = nums.size();
+        int d = k%n;
+        
+        reverse(nums.begin(),nums.end()-d);
+        reverse(nums.begin()+n-d,nums.end());
+        reverse(nums.begin(),nums.end());
+        
+    }
+    
+    // Left Rotate an array by k
+    
+     void rotate(vector<int>& nums, int k) {
+      
+        int n = nums.size();
+        int d = k%n;
+        
+        reverse(nums.begin(),nums.begin() + d);
+        reverse(nums.begin() + d + 1, nums.end());
+        reverse(nums.begin(),nums.end());
+        
+    }
