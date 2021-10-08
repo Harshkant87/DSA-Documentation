@@ -1,0 +1,19 @@
+    int subarraySum(vector<int>& nums, int k) {
+        unordered_map<int,int>hash;
+        int count = 0;
+        int sum = 0;
+        
+        for(int num : nums)
+        {
+            sum += num;
+            
+            if(sum == k)
+                count++;
+            
+            if(hash.find(sum - k) != hash.end())
+                count += hash[sum - k];
+            
+            hash[sum]++;
+        }
+        return count;
+    }
