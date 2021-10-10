@@ -1,0 +1,19 @@
+// linear time complexity, constant space and without modifying the array
+
+    int findDuplicate(vector<int>& nums) {
+        if(nums.size() <= 1) // hare tortoise method of cycle detection
+            return -1;
+        
+        int slow = nums[0];
+        int fast = nums[slow];
+        
+        while(slow != fast)
+           slow = nums[slow], last = nums[nums[fast]];
+        
+        
+        fast = 0;
+        while(slow != fast)
+            slow = nums[slow], fast = nums[fast];
+        
+        return slow;
+    }
