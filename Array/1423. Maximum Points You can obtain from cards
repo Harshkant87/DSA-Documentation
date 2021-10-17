@@ -1,0 +1,19 @@
+// can also be done using recursion
+// below the solution in O(k) time and O(1) space
+
+    int maxScore(vector<int>& nums, int k) {
+        int total = 0;
+        int best = INT_MIN;
+        int n = nums.size();
+        
+        for(int i = 0; i < k; i++)
+            total += nums[i];
+        
+        best = total;
+        for(int i = k - 1, j = n - 1; i >= 0; i--, j--)
+        {
+            total += nums[j] - nums[i];
+            best = max(best, total);
+        }
+        return best;    
+    }
