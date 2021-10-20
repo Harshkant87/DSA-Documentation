@@ -1,0 +1,40 @@
+// Backtracking
+
+ void rec(vector<int>& nums, vector<vector<int>>&ans, vector<int>&temp, int index)
+    {
+        if(index == nums.size())
+        {
+            ans.push_back(temp);
+            return;
+        }
+        
+        rec(nums, ans, temp, index + 1);
+        temp.push_back(nums[index]);
+        rec(nums, ans, temp, index + 1);
+        temp.pop_back();
+    }
+    
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>temp;
+        int index = 0;
+        rec(nums, ans, temp, index);
+        return ans;
+    }
+    
+    
+    
+    //bit masking soln by pepcoding
+    
+        vector<vector<int>> subsets(vector<int>& nums) {
+          int n = nums.size(), p = 1 << n;
+        vector<vector<int>> subs(p);
+        for (int i = 0; i < p; i++) {
+            for (int j = 0; j < n; j++) {
+                if ((i >> j) & 1) {
+                    subs[i].push_back(nums[j]);
+                }
+            }
+        }
+        return subs;
+    }
