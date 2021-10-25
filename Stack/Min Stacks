@@ -1,0 +1,35 @@
+   vector<int>s;
+    
+    MinStack() {
+    }
+    
+    void push(int x) {
+        if(!s.empty()){
+          int mn=min(x,s.back());
+            s.push_back(x);
+            s.push_back(mn);
+        }
+        else{
+            s.push_back(x);
+            s.push_back(x);
+        }
+        
+    }
+    
+    void pop() {
+       if(!s.empty())
+       {
+           s.pop_back();
+           s.pop_back();
+       }
+        else
+            return ;
+    }
+    
+    int top() {
+        return s[s.size()-2];
+    }
+    
+    int getMin() {
+        return s[s.size()-1];
+    }
