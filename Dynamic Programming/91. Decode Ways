@@ -1,0 +1,26 @@
+    int rec(string s, int index,  vector<int>&dp)
+    {
+        if(s[index] == '0')
+            return 0;
+        
+        if(index == s.size())
+            return 1;
+        
+        if(dp[index] != -1)
+            return dp[index];
+        
+        if(index + 1 < s.size() && (s[index] == '1'  || (s[index] == '2' && s[index + 1] <= '6')))
+            return dp[index] =  rec(s, index + 1, dp) + rec(s, index + 2, dp);
+        
+        return dp[index] = rec(s, index + 1, dp);
+        
+        
+    }
+    
+    int numDecodings(string s) {
+        int n = s.size();
+        if(n == 0 || s[0] == '0' || (s[n - 1] == '0' && s[n - 2] > '2'))
+            return 0;
+        vector<int>dp(n + 1, -1); 
+        return rec(s, 0, dp);
+    }
