@@ -1,0 +1,48 @@
+//recursive + memoization
+
+    int helper(vector<int>& coins, int amount, int index, vector<vector<int>>&dp)
+    {
+        if(index == coins.size() || amount < 0)
+            return 10001;
+   
+        if(amount == 0)
+        retur 0;
+        
+        if(dp[index][amount] != -1)
+            return dp[index][amount];
+        
+        if(amount >= coins[index])
+        return dp[index][amount] = min(helper(coins, amount, index + 1, dp)
+        , 1+ helper(coins, amount - coins[index], index, dp));
+        
+        return dp[index][amount] = helper(coins, amount, index + 1, dp);
+    }
+    
+    int coinChange(vector<int>& coins, int amount) {
+        int ans;
+        vector<vector<int>>dp(coins.size() + 1, vector<int>(amount + 1, -1));
+        ans = helper(coins, amount, 0,dp);
+        if(ans >= 10001)
+            ans = -1;
+        return ans;
+    }
+    
+    
+    // tabular
+    
+    int coinChange(vector<int>& coins, int amount) {
+        vector<int>dp(amount+1,amount+1);
+        dp[0]=0;
+        
+        for(int i=1;i<=amount;i++)
+        {
+            for(int j=0;j<coins.size();j++)
+            {
+                if(i>=coins[j])
+                {
+                    dp[i]=min(dp[i],dp[i-coins[j]]+1);
+                }
+            }
+        }
+        return dp[amount]>amount?-1:dp[amount];
+    }
