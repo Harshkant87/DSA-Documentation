@@ -1,0 +1,19 @@
+    bool checkSubarraySum(vector<int>& nums, int k) {
+        unordered_map<int,int>hash;
+        int sum = 0;
+        int n = nums.size();
+        int pretemp = 0;
+        
+        for(int i = 0; i < n; i++)
+        {
+            sum += nums[i];
+            sum = sum % k;
+            
+            if(hash[sum])
+                return true;
+            
+            hash[pretemp]++;
+            pretemp = sum;
+        }
+        return false;
+    }
