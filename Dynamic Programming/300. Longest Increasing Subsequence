@@ -1,0 +1,35 @@
+// o(n^2)
+    int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int>dp(n, 1);
+        int maxLength = 1;
+        
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < i; j++)
+            {
+                if(nums[i] > nums[j])
+                    dp[i] = max(dp[i], 1 + dp[j]), maxLength = max(maxLength, dp[i]);
+            }
+        }
+        return maxLength;
+    }
+    
+  // o(nlogn)
+      int lengthOfLIS(vector<int>& nums) {
+        int n = nums.size();
+        vector<int>dp;
+        dp.push_back(nums[0]);
+        
+        for(int i = 1; i < n; i++)
+        {
+            if(dp.back() < nums[i]) 
+                dp.push_back(nums[i]);
+            else
+            {
+                int correctPosition = lower_bound(dp.begin(), dp.end(), nums[i]) - dp.begin();
+                dp[correctPosition] = nums[i];
+            }
+        }
+        return dp.size();
+    }
