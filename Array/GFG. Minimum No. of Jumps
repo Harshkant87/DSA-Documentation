@@ -1,0 +1,19 @@
+// Jump game I + Jump game II
+    int minJumps(int arr[], int n){
+        // Your code here
+        int jumps = 0;
+        int currMax = 0;
+        int maxFarthest = 0;
+        
+        for(int i = 0; i < n - 1; i++)
+        {
+            maxFarthest = max(maxFarthest, arr[i] + i);
+            
+            if(i == maxFarthest) // check the failure same as Jump Game I
+            return -1;
+            
+            if(i == currMax)
+            jumps++, currMax = maxFarthest; 
+        }
+        return jumps;
+    }
