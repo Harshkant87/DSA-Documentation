@@ -1,0 +1,13 @@
+int getPairsCount(int arr[], int n, int k) {
+        
+        int count = 0;
+        unordered_map<int,int> mm;
+
+        for(int i=0; i<n; i++)
+        { 
+            if(mm.size()>0 && mm.find(k-arr[i])!=mm.end())
+            count += mm[k-arr[i]];
+            mm[arr[i]]++;
+         }
+    return count;
+    }
